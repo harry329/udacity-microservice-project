@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-example
+spec:
+  containers:
+  - image: harry329/nginx-proxy:1.0.1
+    name: reverseproxy
+    imagePullPolicy: Always
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "1024Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 8080
+  restartPolicy: Always
+

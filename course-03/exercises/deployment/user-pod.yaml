@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-user
+spec:
+  containers:
+  - image: harry329/udacity-project-restapi-user:1.0.1
+    name: backend-user
+    imagePullPolicy: Always
+    resources:
+      requests:
+        memory: "64Mi"
+        cpu: "250m"
+      limits:
+        memory: "1024Mi"
+        cpu: "500m"
+    ports:
+    - containerPort: 8080
+
+

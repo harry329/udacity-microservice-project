@@ -1,0 +1,44 @@
+version: "3"
+services:
+  reverseproxy:
+    image: harry329/nginx-proxy:1.0.1
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - backend-user
+      - backend-feed
+  backend-user:
+    image: harry329/udacity-project-restapi-user:1.0.1
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DATABASE: $POSTGRESS_DATABASE
+      POSTGRESS_DATABASE_HOST_URL: $POSTGRESS_DATABASE_HOST_URL
+      DIALECT: $DIALECT
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      BUCKET: $BUCKET
+      JWT_SECRET: $JWT_SECRET
+  backend-feed:
+    image: harry329/udacity-project-restapi-feed:1.0.1
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRESS_USERNAME: $POSTGRESS_USERNAME
+      POSTGRESS_PASSWORD: $POSTGRESS_PASSWORD
+      POSTGRESS_DATABASE: $POSTGRESS_DATABASE
+      POSTGRESS_DATABASE_HOST_URL: $POSTGRESS_DATABASE_HOST_URL
+      DIALECT: $DIALECT
+      AWS_REGION: $AWS_REGION
+      AWS_PROFILE: $AWS_PROFILE
+      BUCKET: $BUCKET
+      JWT_SECRET: $JWT_SECRET
+  frontend:
+    image: harry329/udacity-project-frontend:1.0.1
+    ports:
+      - "8100:8100"
+
+
+
+
