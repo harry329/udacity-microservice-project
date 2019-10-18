@@ -18,4 +18,5 @@ before_install:
 
 
 install:
+  - dockerd
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml build --parallel
