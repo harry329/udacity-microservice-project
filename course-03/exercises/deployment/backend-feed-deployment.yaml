@@ -6,6 +6,11 @@ metadata:
   name: backend-feed
 spec:
   replicas: 2
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 25%
   template:
     metadata:
       labels:
@@ -24,4 +29,58 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 8080
+        env:
+        - name: POSTGRESS_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_DATABASE
+        - name: POSTGRESS_DATABASE_HOST_URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_DATABASE_HOST_URL
+        - name: DIALECT
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: DIALECT
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: BUCKET
+        - name: JWT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: JWT_SECRET
+        - name: POSTGRESS_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRESS_USERNAME
+        - name: POSTGRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRESS_PASSWORD
+        volumeMounts:
+        - name: aws-secret
+          mountPath: "/root/.aws/"
+          readOnly: true
       restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret

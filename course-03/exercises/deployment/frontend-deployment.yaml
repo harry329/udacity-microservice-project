@@ -6,14 +6,31 @@ metadata:
   name: frontend
 spec:
   replicas: 2
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 25%
   template:
     metadata:
       labels:
         service: frontend
     spec:
       containers:
+      - image: harry329/udacity-project-frontend:1.0.2
+        name: frontend2
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 8100
       - image: harry329/udacity-project-frontend:1.0.1
-        name: frontend
+        name: frontend1
         imagePullPolicy: Always
         resources:
           requests:
