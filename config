@@ -1,0 +1,19 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data:
+    server: https://demo-cluster-api-lb-7394dddc9a488adb.elb.us-east-2.amazonaws.com:6443
+  name: demo-cluster
+contexts:
+- context:
+    cluster: demo-cluster
+    user: kubernetes-admin
+  name: kubernetes-admin@demo-cluster
+current-context: kubernetes-admin@demo-cluster
+kind: Config
+preferences: {}
+users:
+- name: kubernetes-admin
+  user:
+    client-certificate-data:
+    client-key-data:
