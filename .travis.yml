@@ -18,4 +18,6 @@ before_install:
 
 
 install:
+  - echo $DOCKER_USERNAME
+  - echo $DOCKER_HOST
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml build

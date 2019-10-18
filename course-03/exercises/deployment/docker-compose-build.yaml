@@ -4,14 +4,14 @@ services:
     build:
       context: .
     image: harry329/nginx-proxy
-  backend_user:
-    build:
-      context: ../udacity-c3-restapi-user
-    image: harry329/udacity-project-restapi-user
-  backend_feed:
-    build:
-      context: ../udacity-c3-restapi-feed
-    image: harry329/ udacity-project-restapi-feed
+#  backend_user:
+#    build:
+#      context: ../udacity-c3-restapi-user
+#    image: harry329/udacity-project-restapi-user
+#  backend_feed:
+#    build:
+#      context: ../udacity-c3-restapi-feed
+#    image: harry329/ udacity-project-restapi-feed
   frontend:
     build:
       context: ../udacity-c3-frontend
