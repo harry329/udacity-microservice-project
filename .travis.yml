@@ -28,5 +28,12 @@ install:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml build
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml push
-  - kubectl delete -f course-03/exercises/deployment/frontend-deployment.yaml
+  - kubectl apply -f course-03/exercises/deployment/frontend-deployment.yaml
+  - kubectl apply -f course-03/exercises/deployment/frontend-service.yaml
+  - kubectl apply -f course-03/exercises/deployment/backend-feed-deployment.yaml
+  - kubectl apply -f course-03/exercises/deployment/backend-feed-service.yaml
+  - kubectl apply -f course-03/exercises/deployment/backend-user-deployment.yaml
+  - kubectl apply -f course-03/exercises/deployment/backend-user-service.yaml
+  - kubectl apply -f course-03/exercises/deployment/reverseproxy-deployment.yaml
+  - kubectl apply -f course-03/exercises/deployment/reverseproxy-service.yaml
   - kubectl get pods,svc,deploy

@@ -15,3 +15,11 @@ creating following files in deployment dir to run k8 cluster
     POSTGRESS_USERNAME
     POSTGRESS_PASSWORD
     JWT_SECRET
+    
+## For Travis CI
+Set the following values in env variable in dashboard -
+KUBE_CLUSTER_CERTIFICATE
+KUBE_CLIENT_CERTIFICATE
+KUBE_CLIENT_KEY
+DOCKER_USERNAME
+DOCKER_PASSWORD
