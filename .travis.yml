@@ -18,5 +18,5 @@ before_install:
 
 
 install:
-  - dockerd
+  - sudo dockerd
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml build --parallel
