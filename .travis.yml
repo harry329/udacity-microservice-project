@@ -28,4 +28,5 @@ install:
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml build
   - docker-compose -f course-03/exercises/deployment/docker-compose-build.yaml push
+  - kubectl delete -f course-03/exercises/deployment/frontend-deployment.yaml
   - kubectl get pods,svc,deploy
